@@ -1,0 +1,20 @@
+{
+  "name": "node-events-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "typecheck": "tsc",
+    "part-1": "tsx part1.ts",
+    "part-2": "tsx part2.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "tsx": "^4.20.1",
+    "typescript": "^5.8.3"
+  }
+}
