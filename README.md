@@ -1,4 +1,4 @@
-# Python Events Prototype
+# Node Events Prototype
 
 ![](./misc/cactus.jpg)
 
