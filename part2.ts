@@ -5,7 +5,7 @@ import { CactusClient, CactusHandler, INCOMING_EVENTS } from "./cactusSdk";
  *
  * 1. Migrate the existing `eventHandler` function to a series of `handler.register(...)` calls
  * 2. Resolve any type errors (check w/ `npm run --silent typecheck`)
- * 3. Resolve any runtime errors (run code w/ `npm run --silent part-1`)
+ * 3. Resolve any runtime errors (run code w/ `npm run --silent part-2`)
  * 4. Delete `eventHandler` entirely.
  *
  */
@@ -49,12 +49,12 @@ const eventHandler = (body: string): void => {
   }
 };
 
-INCOMING_EVENTS.forEach((ev, idx) => {
+INCOMING_EVENTS.forEach((body, idx) => {
   console.log(`\n== parsing event ${idx}`);
   try {
-    eventHandler(ev);
+    eventHandler(body);
   } catch (e) {
-    console.log(`  failed to handle: ${ev}\n`);
+    console.log(`  failed to handle: ${body}\n`);
     throw e;
   }
 });

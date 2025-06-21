@@ -106,14 +106,14 @@ const handler = new CactusHandler().register("some.event", (thinEvent) => {
   console.log("handling", thinEvent.type);
 });
 
-handler.handle('{"type": "some.event"}'); // prints our line
+handler.handle('{"type": "some.event"}'); // prints "handling some.event"
 ```
 
 For part 2, we'd like to migrate our handler from part 1 to this newer style. To do that:
 
 1. Migrate the existing `eventHandler` function to a series of `handler.register(...)` calls
 2. Resolve any type errors (check w/ `npm run --silent typecheck`)
-3. Resolve any runtime errors (run code w/ `npm run --silent part-1`)
+3. Resolve any runtime errors (run code w/ `npm run --silent part-2`)
 4. Delete `eventHandler` entirely.
 
 When you're done, we'll talk about this new approach and compare the two.

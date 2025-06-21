@@ -154,6 +154,9 @@ export class CactusClient {
     if (!event) {
       throw new Error(`404: event ${id} not found`);
     }
+    if ("relatedObject" in event) {
+      event.fetchRelatedObject = () => DATABASE[event.relatedObject.id] as any;
+    }
 
     return event;
   }

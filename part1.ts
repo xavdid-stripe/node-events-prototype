@@ -48,12 +48,12 @@ const eventHandler = (body: string): void => {
   }
 };
 
-INCOMING_EVENTS.forEach((ev, idx) => {
+INCOMING_EVENTS.forEach((body, idx) => {
   console.log(`\n== parsing event ${idx}`);
   try {
-    eventHandler(ev);
+    eventHandler(body);
   } catch (e) {
-    console.log(`  failed to handle: ${ev}\n`);
+    console.log(`  failed to handle: ${body}\n`);
     throw e;
   }
 });
