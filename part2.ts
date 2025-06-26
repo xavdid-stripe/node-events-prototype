@@ -52,7 +52,7 @@ const eventHandler = (body: string): void => {
 INCOMING_EVENTS.forEach((body, idx) => {
   console.log(`\n== parsing event ${idx}`);
   try {
-    eventHandler(body);
+    handler.handle(body);
   } catch (e) {
     console.log(`  failed to handle: ${body}\n`);
     throw e;

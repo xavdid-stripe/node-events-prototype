@@ -10,9 +10,39 @@ Initial user response has been good, but we strive to be the sharpest needle in 
 
 ## Docs
 
-Cactus Corp sends "thin" events to our users, which contain minimal info but provide tools to fetch the full event data. Here is the full documentation for those shapes.
+Cactus Corp sends "thin" events to our users, which contain minimal info but provide tools to fetch the full event data. The initial payload looks like this:
 
-### Objects
+```json
+{
+  "id": "evt_123",
+  "type": "order.shipped",
+  "related_object": {
+    "id": "ord_456",
+    "type": "order"
+  }
+}
+```
+
+> [!IMPORTANT]
+> Not all events types have a related object. See the table below for more information.
+
+There's a corresponding `Event` object you can retrieve (or "pull") from the Cactus API. It's identical as the thin event, but it includes the event's `data`:
+
+```json
+{
+  "id": "evt_123",
+  "type": "order.shipped",
+  "related_object": {
+    "id": "ord_456",
+    "type": "order"
+  },
+  "data": {
+    "shipping_service": "usps"
+  }
+}
+```
+
+### Related Objects
 
 We send events related to the the following object types:
 
@@ -24,7 +54,9 @@ interface Order {
   cost_cents: number;
   delivery_date: string;
 }
+```
 
+```ts
 interface Movie {
   id: string;
   title: string;

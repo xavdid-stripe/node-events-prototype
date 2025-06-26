@@ -205,6 +205,7 @@ type Handler<T extends EventTypes> = (
 
 export class CactusHandler {
   private handlers: Partial<Record<EventTypes, Handler<EventTypes>>> = {};
+  private unknownEventHandler: ((e: PushedThinEvent) => void) | null = null;
 
   handle(body: string) {
     const event = new CactusClient().parseEventV2(body);
@@ -213,13 +214,17 @@ export class CactusHandler {
 
     if (handler) {
       handler(event);
+    } else if (!this.unknownEventHandler) {
+      throw new Error(
+        `unable to handle unknown event of type: "${event.type}"`
+      );
     } else {
-      this.onOther(event);
+      this.unknownEventHandler(event);
     }
   }
 
-  onOther(event: PushedThinEvent) {
-    throw new Error(`unhnandled event of type: "${event.type}"`);
+  handleUnknownEvent(f: Handler<any>) {
+    this.unknownEventHandler = f;
   }
 
   /**
